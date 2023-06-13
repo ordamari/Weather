@@ -1,13 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 @Component({
-    selector: 'search',
+    selector: 'app-search',
     templateUrl: './search.component.html',
     styleUrls: ['./search.component.scss'],
 })
-export class SearchComponent implements OnInit {
-    constructor() {}
+export class SearchComponent<T extends object> {
+    private _value = ''
 
-    private _value: string = ''
+    @Input() options: T[] = []
+    @Input() labelKey!: keyof T
 
     @Input() set value(val: string) {
         this._value = val
@@ -18,7 +19,5 @@ export class SearchComponent implements OnInit {
     }
     @Output() valueChange = new EventEmitter<string>()
 
-    search: string = ''
-
-    ngOnInit(): void {}
+    search = ''
 }

@@ -5,6 +5,7 @@ import { Weather, weatherSchema } from '@shared/models/weather.model'
 import { parseResponse } from '@shared/utils/parse-response.operator'
 import { environment } from '@env/environment'
 import citiesStub from '@shared/data/cities'
+import weatherStub from '@shared/data/weather'
 import { City, citySchema } from '@shared/models/city.model'
 
 @Injectable({
@@ -29,17 +30,16 @@ export class WeatherService {
         return cities
     }
 
-    getWeather(cityId: number): Observable<Weather> {
-        return this.http
-            .get<Weather>(
-                'http://dataservice.accuweather.com/currentconditions/v1/' +
-                    cityId,
-                {
-                    params: {
-                        apikey: process.env['WEATHER_API_KEY'] as string,
-                    },
-                }
-            )
+    public async getWeather(cityId: number) {
+        return weatherStub[0] as Weather
+        const $res = this.http
+            .get<Weather[]>(`${this.BASE_URL}currentconditions/v1/${cityId}`, {
+                params: {
+                    apikey: environment.WEATHER_API_KEY,
+                },
+            })
             .pipe(parseResponse(weatherSchema))
+        const weather = await firstValueFrom($res)
+        return weather[0]
     }
 }

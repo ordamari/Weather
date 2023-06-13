@@ -4,5 +4,5 @@
         "titleBar.activeBackground": "#1F406F",
         "titleBar.activeForeground": "#F8FAFD"
     },
-    "cSpell.words": ["apikey"]
+    "cSpell.words": ["apikey", "currentconditions"]
 }

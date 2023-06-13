@@ -1,1 +1,6 @@
-<search [value]="query" (valueChange)="onQueryChange($event)"></search>
+<app-search
+    [options]="cities"
+    [value]="query"
+    labelKey="LocalizedName"
+    (valueChange)="onQueryChange($event)"
+></app-search>

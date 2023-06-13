@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, OnDestroy } from '@angular/core'
 import { City } from '@shared/models/city.model'
 import { WeatherService } from '@shared/services/weather.service'
 
@@ -7,7 +7,7 @@ import { WeatherService } from '@shared/services/weather.service'
     templateUrl: './search-cities.component.html',
     styleUrls: ['./search-cities.component.scss'],
 })
-export class SearchCitiesComponent {
+export class SearchCitiesComponent implements OnDestroy {
     query = ''
     cities: City[] = []
     timeOut: NodeJS.Timeout | null = null
@@ -20,8 +20,13 @@ export class SearchCitiesComponent {
 
     debouncedGetCities(query: string) {
         if (this.timeOut) clearTimeout(this.timeOut)
-        this.timeOut = setTimeout(() => {
-            this.weatherService.getCities(query)
+        this.timeOut = setTimeout(async () => {
+            const cities = await this.weatherService.getCities(query)
+            this.cities = cities
         }, 500)
+    }
+
+    ngOnDestroy(): void {
+        if (this.timeOut) clearTimeout(this.timeOut)
     }
 }

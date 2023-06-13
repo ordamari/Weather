@@ -1,0 +1,6 @@
+<input autocomplete="off" [(ngModel)]="value" type="text" />
+<div>
+    <div *ngFor="let option of options">
+        <div>{{ option[labelKey] }}</div>
+    </div>
+</div>

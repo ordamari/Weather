@@ -1,23 +1,8 @@
-import { Component, OnInit } from '@angular/core'
-import {
-    Observable,
-    Subject,
-    concatMap,
-    debounceTime,
-    distinctUntilChanged,
-    map,
-    tap,
-} from 'rxjs'
-import { City } from 'src/app/common/types/city.type'
-import { WeatherService } from '@shared/services/weather.service'
+import { Component } from '@angular/core'
 
 @Component({
     selector: 'app-weather',
     templateUrl: './weather.component.html',
     styleUrls: ['./weather.component.scss'],
 })
-export class WeatherComponent implements OnInit {
-    constructor() {}
-
-    ngOnInit(): void {}
-}
+export class WeatherComponent {}

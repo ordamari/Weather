@@ -4,10 +4,20 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { HttpClientModule } from '@angular/common/http'
 import { CoreModule } from './core/core.module'
+import { StoreModule } from '@ngrx/store'
+import weatherReducer from './store/weather.reducer'
 
 @NgModule({
     declarations: [AppComponent],
-    imports: [BrowserModule, AppRoutingModule, HttpClientModule, CoreModule],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        CoreModule,
+        StoreModule.forRoot({
+            weather: weatherReducer,
+        }),
+    ],
     providers: [],
     bootstrap: [AppComponent],
 })
