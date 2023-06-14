@@ -1,1 +1,12 @@
-<app-search-cities></app-search-cities>
+<div>
+    <app-search-cities></app-search-cities>
+    <span *ngIf="selectedCity$ | async as selectedCity" class="city">{{
+        selectedCity.LocalizedName
+    }}</span>
+
+    <app-weather-view *ngIf="weather" [weather]="weather"></app-weather-view>
+    <app-forecast-view
+        *ngIf="forecast"
+        [forecast]="forecast"
+    ></app-forecast-view>
+</div>

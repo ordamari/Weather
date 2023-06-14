@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { Observable, firstValueFrom } from 'rxjs'
+import { firstValueFrom, map } from 'rxjs'
 import { Weather, weatherSchema } from '@shared/models/weather.model'
 import { parseResponse } from '@shared/utils/parse-response.operator'
 import { environment } from '@env/environment'
 import citiesStub from '@shared/data/cities'
 import weatherStub from '@shared/data/weather'
+import forecastStub from '@shared/data/forecast'
 import { City, citySchema } from '@shared/models/city.model'
+import { Forecast, forecastSchema } from '@shared/models/forecast.model'
 
 @Injectable({
     providedIn: 'root',
@@ -30,16 +32,33 @@ export class WeatherService {
         return cities
     }
 
-    public async getWeather(cityId: number) {
+    public async getWeather(key: string) {
         return weatherStub[0] as Weather
         const $res = this.http
-            .get<Weather[]>(`${this.BASE_URL}currentconditions/v1/${cityId}`, {
+            .get<Weather[]>(`${this.BASE_URL}currentconditions/v1/${key}`, {
                 params: {
                     apikey: environment.WEATHER_API_KEY,
                 },
             })
-            .pipe(parseResponse(weatherSchema))
+            .pipe(
+                map((weathers: Weather[]) => weathers[0]),
+                parseResponse(weatherSchema)
+            )
         const weather = await firstValueFrom($res)
-        return weather[0]
+        return weather
+    }
+
+    public async getForecast(key: string) {
+        return forecastStub as Forecast
+        const $res = this.http
+            .get<Forecast>(`${this.BASE_URL}forecasts/v1/daily/5day/${key}`, {
+                params: {
+                    apikey: environment.WEATHER_API_KEY,
+                    metric: 'true',
+                },
+            })
+            .pipe(parseResponse(forecastSchema))
+        const forecast = await firstValueFrom($res)
+        return forecast
     }
 }

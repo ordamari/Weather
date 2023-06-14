@@ -1,14 +1,15 @@
 import { createReducer } from '@ngrx/store'
+import defaultCity from '@shared/data/defaultCity'
 import { City } from '@shared/models/city.model'
 
-export type InitialState = {
+export type WeatherState = {
     selectedCity: City | null
     favoriteCities: City[]
 }
 
-const initialState = {
-    selectedCity: null,
+const weatherState = {
+    selectedCity: defaultCity,
     favoriteCities: [],
-} as InitialState
+} as WeatherState
 
-export default createReducer(initialState)
+export default createReducer(weatherState)

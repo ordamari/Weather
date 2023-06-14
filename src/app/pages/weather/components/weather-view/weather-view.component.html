@@ -1,0 +1,10 @@
+<div class="weather">
+    <app-weather-icons
+        [icon]="weather.WeatherIcon"
+        [alt]="weather.WeatherText"
+    ></app-weather-icons>
+    <app-weather-degrees
+        [degrees]="degreesByMethod"
+        [method]="method"
+    ></app-weather-degrees>
+</div>
