@@ -43,6 +43,9 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       width: 100%;
+      background-color: transparent;
+      border: none;
+      outline: none;
 
       &:hover {
         background-color: var(--background-color);

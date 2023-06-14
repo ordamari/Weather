@@ -4,6 +4,8 @@
         *ngIf="weather"
         [weather]="weather"
         [selectedCity]="selectedCity$ | async"
+        [favoriteCities]="favoriteCities$ | async"
+        (toggleFavorite)="onToggleFavorite($event)"
     ></app-weather-view>
     <div class="w100">
         <app-forecast-view

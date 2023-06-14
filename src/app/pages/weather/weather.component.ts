@@ -1,16 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { WeatherState } from '@app/store/weather.reducer'
+import { RootState } from '@app/store/root.reducer'
+import { toggleFavorite } from '@app/store/weather/weather.actions'
 import { Store } from '@ngrx/store'
 import { City } from '@shared/models/city.model'
 import { Forecast } from '@shared/models/forecast.model'
 import { Weather } from '@shared/models/weather.model'
 import { WeatherService } from '@shared/services/weather.service'
-import { Subscription, tap } from 'rxjs'
-
-// TODO: MOVE THIS TYPE TO A SHARED FOLDER
-export type RootState = {
-    weather: WeatherState
-}
+import { Observable, Subscription, tap } from 'rxjs'
 
 @Component({
     selector: 'app-weather',
@@ -18,14 +14,18 @@ export type RootState = {
     styleUrls: ['./weather.component.scss'],
 })
 export class WeatherComponent implements OnInit, OnDestroy {
-    constructor(
-        private store: Store<RootState>,
-        private weatherService: WeatherService
-    ) {}
-    selectedCity$ = this.store.select((state) => state.weather.selectedCity)
+    constructor(private store: Store, private weatherService: WeatherService) {}
+
     weather: Weather | null = null
     forecast: Forecast | null = null
     subscription: Subscription | null = null
+
+    selectedCity$: Observable<City> = this.store.select(
+        (state: any) => state.weather.selectedCity
+    )
+    favoriteCities$: Observable<City[]> = this.store.select(
+        (state: any) => state.weather.favoriteCities
+    )
 
     async onCityChange(city: City | null) {
         if (!city) return
@@ -35,6 +35,11 @@ export class WeatherComponent implements OnInit, OnDestroy {
         ])
         this.weather = weather
         this.forecast = forecast
+    }
+
+    onToggleFavorite(city: City | null) {
+        if (!city) return
+        this.store.dispatch(toggleFavorite({ city }))
     }
 
     ngOnInit(): void {

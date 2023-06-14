@@ -4,8 +4,12 @@
         <fa-icon [icon]="faSearch"></fa-icon>
     </div>
     <div *ngIf="isShowOptions" class="options">
-        <div class="option" *ngFor="let option of options">
+        <button
+            (click)="onOptionClick(option)"
+            class="option"
+            *ngFor="let option of options"
+        >
             <div>{{ option[labelKey] }}</div>
-        </div>
+        </button>
     </div>
 </div>

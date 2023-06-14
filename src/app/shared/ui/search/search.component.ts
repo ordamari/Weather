@@ -17,11 +17,17 @@ export class SearchComponent<T extends object> {
     }
     private _value = ''
     @Output() valueChange = new EventEmitter<string>()
+    @Output() selectOption = new EventEmitter<T>()
 
     faSearch = faSearch
-    search = ''
+
+    onOptionClick(option: T) {
+        this.selectOption.emit(option)
+        console.log('option', option)
+        this.value = ''
+    }
 
     get isShowOptions() {
-        return this.options.length > 0
+        return this.options.length > 0 && this.value.length > 0
     }
 }

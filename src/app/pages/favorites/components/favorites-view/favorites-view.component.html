@@ -1,0 +1,8 @@
+<ul *ngIf="favoriteCities" class="favorites">
+    <app-favorite-view
+        *ngFor="let city of favoriteCities"
+        [city]="city"
+        (removeFavorite)="removeFavorite.emit($event)"
+    >
+    </app-favorite-view>
+</ul>

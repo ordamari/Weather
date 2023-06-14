@@ -25,5 +25,19 @@
     font-weight: var(--bold);
   }
 
+  .favorite {
+    background-color: transparent;
+    border: none;
+    color: var(--near-background-color);
+    font-size: 4rem;
+    cursor: pointer;
+    padding-inline-start: 4rem;
+
+    &.active {
+      color: #ffaf04
+    }
+
+  }
+
 
 }

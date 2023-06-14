@@ -23,4 +23,13 @@
             [method]="method"
         ></app-weather-degrees>
     </div>
+    <div>
+        <button
+            (click)="toggleFavorite.emit(selectedCity)"
+            class="favorite"
+            [ngClass]="{ active: isSelectedCityFavorite }"
+        >
+            <fa-icon [icon]="faHeart"></fa-icon>
+        </button>
+    </div>
 </div>
