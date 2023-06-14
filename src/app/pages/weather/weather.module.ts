@@ -8,10 +8,10 @@ import { SearchCitiesComponent } from './components/search-cities/search-cities.
 import { HttpClientModule } from '@angular/common/http'
 import { WeatherIconsComponent } from './components/weather-icons/weather-icons.component'
 import { WeatherViewComponent } from './components/weather-view/weather-view.component'
-import { WeatherDegreesComponent } from './components/weather-degrees/weather-degrees.component';
-import { ForecastViewComponent } from './components/forecast-view/forecast-view.component';
+import { WeatherDegreesComponent } from './components/weather-degrees/weather-degrees.component'
+import { ForecastViewComponent } from './components/forecast-view/forecast-view.component'
 import { DailyForecastViewComponent } from './components/daily-forecast-view/daily-forecast-view.component'
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 @NgModule({
     declarations: [
         WeatherComponent,
@@ -24,6 +24,7 @@ import { DailyForecastViewComponent } from './components/daily-forecast-view/dai
         DailyForecastViewComponent,
     ],
     imports: [
+        FontAwesomeModule,
         CommonModule,
         HttpClientModule,
         RouterModule.forChild([{ path: '', component: WeatherComponent }]),

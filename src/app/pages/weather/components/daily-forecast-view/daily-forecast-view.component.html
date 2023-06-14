@@ -1,27 +1,24 @@
-<li class="daily-forecast">
-    <div class="day">
+<li class="daily-forecast flex column align-center gap-small">
+    <span class="day">
         {{ dailyForecast.Date | date : 'EEEE' }}
+    </span>
+    <div class="icon-container">
         <app-weather-icons
             [icon]="dailyForecast.Day.Icon"
             [alt]="dailyForecast.Day.IconPhrase"
         ></app-weather-icons>
     </div>
-    <div class="night">
-        <app-weather-icons
-            [icon]="dailyForecast.Night.Icon"
-            [alt]="dailyForecast.Night.IconPhrase"
-        ></app-weather-icons>
-    </div>
-    <div class="tempertures">
-        <div class="max">
-            <app-weather-degrees
-                [degrees]="maxDegrees"
-                [method]="method"
-            ></app-weather-degrees>
-        </div>
+    <div class="temperatures flex align-center gap-small">
         <div class="min">
             <app-weather-degrees
                 [degrees]="minDegrees"
+                [method]="method"
+            ></app-weather-degrees>
+        </div>
+        <span>-</span>
+        <div class="max">
+            <app-weather-degrees
+                [degrees]="maxDegrees"
                 [method]="method"
             ></app-weather-degrees>
         </div>

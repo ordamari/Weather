@@ -1,12 +1,14 @@
-<div>
+<div class="page weather flex column align-center gap-large justify-center">
     <app-search-cities></app-search-cities>
-    <span *ngIf="selectedCity$ | async as selectedCity" class="city">{{
-        selectedCity.LocalizedName
-    }}</span>
-
-    <app-weather-view *ngIf="weather" [weather]="weather"></app-weather-view>
-    <app-forecast-view
-        *ngIf="forecast"
-        [forecast]="forecast"
-    ></app-forecast-view>
+    <app-weather-view
+        *ngIf="weather"
+        [weather]="weather"
+        [selectedCity]="selectedCity$ | async"
+    ></app-weather-view>
+    <div class="w100">
+        <app-forecast-view
+            *ngIf="forecast"
+            [forecast]="forecast"
+        ></app-forecast-view>
+    </div>
 </div>

@@ -1,0 +1,14 @@
+.daily-forecast {
+  .day {
+    font-weight: var(--bold);
+  }
+
+  .icon-container {
+    width: 120px;
+    height: 70px;
+  }
+
+  .temperatures {
+    font-size: var(--large-font-size);
+  }
+}

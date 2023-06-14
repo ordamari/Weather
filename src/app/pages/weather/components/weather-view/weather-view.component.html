@@ -1,10 +1,26 @@
-<div class="weather">
-    <app-weather-icons
-        [icon]="weather.WeatherIcon"
-        [alt]="weather.WeatherText"
-    ></app-weather-icons>
-    <app-weather-degrees
-        [degrees]="degreesByMethod"
-        [method]="method"
-    ></app-weather-degrees>
+<div class="weather-view flex align-center">
+    <div class="flex column align-center">
+        <div class="icon-container">
+            <app-weather-icons
+                [icon]="weather.WeatherIcon"
+                [alt]="weather.WeatherText"
+            ></app-weather-icons>
+        </div>
+        <span class="text">{{ weather.WeatherText }}</span>
+    </div>
+    <div class="flex column">
+        <div *ngIf="selectedCity" class="flex column">
+            <span class="date">{{
+                weather.LocalObservationDateTime | date
+            }}</span>
+            <span class="country">{{
+                selectedCity.Country.LocalizedName
+            }}</span>
+            <span class="city">{{ selectedCity.LocalizedName }}</span>
+        </div>
+        <app-weather-degrees
+            [degrees]="degreesByMethod"
+            [method]="method"
+        ></app-weather-degrees>
+    </div>
 </div>

@@ -3,11 +3,6 @@ import { RouterModule, Routes } from '@angular/router'
 
 const routes: Routes = [
     {
-        path: '',
-        redirectTo: 'weather',
-        pathMatch: 'full',
-    },
-    {
         path: 'weather',
         loadChildren: () =>
             import('./pages/weather/weather.module').then(
@@ -20,6 +15,11 @@ const routes: Routes = [
             import('./pages/favorites/favorites.module').then(
                 (m) => m.FavoritesModule
             ),
+    },
+    {
+        path: '',
+        redirectTo: 'weather',
+        pathMatch: 'full',
     },
     {
         path: '**',

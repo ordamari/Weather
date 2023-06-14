@@ -1,6 +1,11 @@
-<input autocomplete="off" [(ngModel)]="value" type="text" />
-<div>
-    <div *ngFor="let option of options">
-        <div>{{ option[labelKey] }}</div>
+<div class="search-container">
+    <div class="input-container">
+        <input autocomplete="off" [(ngModel)]="value" type="text" />
+        <fa-icon [icon]="faSearch"></fa-icon>
+    </div>
+    <div *ngIf="isShowOptions" class="options">
+        <div class="option" *ngFor="let option of options">
+            <div>{{ option[labelKey] }}</div>
+        </div>
     </div>
 </div>

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core'
 import { Method } from '@shared/enums/method.enum'
+import { City } from '@shared/models/city.model'
 import { Weather } from '@shared/models/weather.model'
 
 @Component({
@@ -8,6 +9,7 @@ import { Weather } from '@shared/models/weather.model'
     styleUrls: ['./weather-view.component.scss'],
 })
 export class WeatherViewComponent {
+    @Input() selectedCity: City | null = null
     @Input() weather!: Weather
     method = Method.Metric
 
