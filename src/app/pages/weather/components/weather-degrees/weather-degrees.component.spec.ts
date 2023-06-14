@@ -1,21 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { WeatherDegreesComponent } from './weather-degrees.component';
+import { WeatherDegreesComponent } from './weather-degrees.component'
 
 describe('WeatherDegreesComponent', () => {
-  let component: WeatherDegreesComponent;
-  let fixture: ComponentFixture<WeatherDegreesComponent>;
+    let component: WeatherDegreesComponent
+    let fixture: ComponentFixture<WeatherDegreesComponent>
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [WeatherDegreesComponent]
-    });
-    fixture = TestBed.createComponent(WeatherDegreesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [WeatherDegreesComponent],
+        })
+        fixture = TestBed.createComponent(WeatherDegreesComponent)
+        component = fixture.componentInstance
+        fixture.detectChanges()
+    })
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    it('should create', () => {
+        expect(component).toBeTruthy()
+    })
+})
