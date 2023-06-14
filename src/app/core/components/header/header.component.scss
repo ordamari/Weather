@@ -1,0 +1,29 @@
+.header {
+  background-color: var(--near-background-color);
+  padding: var(--large-gap);
+
+  ul {
+    display: flex;
+    gap: var(--large-gap);
+
+    li {
+
+      a {
+        text-decoration: none;
+        padding: var(--small-gap) var(--large-gap);
+        font-size: var(--large-font-size);
+        border-radius: var(--medium-border-radius);
+        display: block;
+        transition: var(--transition);
+
+        &:not(.active):hover {
+          scale: 1.1;
+        }
+
+        &.active {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

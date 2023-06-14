@@ -1,0 +1,43 @@
+.weather-view {
+
+  margin-block: 100px;
+
+  .icon-container {
+    width: 200px;
+    height: 110px;
+  }
+
+  font-size: var(--extra-large-font-size);
+
+  .date {
+    font-size: var(--small-font-size);
+    font-weight: var(--bold);
+  }
+
+
+
+  .text,
+  .country {
+    font-size: var(--medium-font-size);
+  }
+
+  .text {
+    font-weight: var(--bold);
+  }
+
+  .favorite {
+    background-color: transparent;
+    border: none;
+    color: var(--near-background-color);
+    font-size: 4rem;
+    cursor: pointer;
+    padding-inline-start: 4rem;
+
+    &.active {
+      color: #ffaf04
+    }
+
+  }
+
+
+}

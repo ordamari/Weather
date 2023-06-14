@@ -1,0 +1,15 @@
+<div class="search-container">
+    <div class="input-container">
+        <input autocomplete="off" [(ngModel)]="value" type="text" />
+        <fa-icon [icon]="faSearch"></fa-icon>
+    </div>
+    <div *ngIf="isShowOptions" class="options">
+        <button
+            (click)="onOptionClick(option)"
+            class="option"
+            *ngFor="let option of options"
+        >
+            <div>{{ option[labelKey] }}</div>
+        </button>
+    </div>
+</div>

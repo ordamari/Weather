@@ -1,0 +1,7 @@
+<li class="city">
+    <span class="country">
+        {{ city.Country.LocalizedName }}
+    </span>
+    <span class="name">{{ city.LocalizedName }}</span>
+    <button (click)="removeFavorite.emit(city)">remove</button>
+</li>

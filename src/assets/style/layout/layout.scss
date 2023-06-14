@@ -1,0 +1,34 @@
+.app {
+  width: 100%;
+  height: 100%;
+  padding-inline: var(--small-gap);
+
+
+  &.light {
+    --background-color: var(--near-white);
+    --near-background-color: var(--white);
+    --text-color: var(--black);
+  }
+
+  &.dark {
+    --background-color: var(--near-black);
+    --near-background-color: var(--black);
+    --text-color: var(--white);
+  }
+
+  color: var(--text-color);
+  background-color: var(--background-color);
+
+  .container {
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    .page {
+      padding-top: var(--extra-large-gap);
+      height: 100%;
+
+    }
+
+  }
+}
