@@ -29,7 +29,7 @@ jobs:
                       - args: [--global, gulp, prettier, typescript]
 
             - name: Build project
-              run: pnpm build "-c" production-github
+              run: pnpm build \"-c\" production-github
 
             - name: Upload production-ready build files
               uses: actions/upload-artifact@v2
