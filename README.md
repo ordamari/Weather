@@ -3,6 +3,7 @@
 * [Technologies](#technologies)
 * [Images](#images)
 * [Features](#features)
+* [Setup](#setup)
 
 ## General info
 This is a simple and responsive weather app developed using Angular. It allows users to search for weather details of cities, save them as favorites, and view a 5-day forecast. The app integrates with the AccuWeather API to retrieve weather data.<br/>
@@ -42,3 +43,9 @@ services:
         ports:
             - '3031:80'
 ```
+
+### Local run
+`pnpm i && pnpm start`
+
+Note: npm should work the same.
+
