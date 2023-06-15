@@ -1,8 +1,14 @@
 <div class="page weather flex column align-center">
-    <app-search-cities></app-search-cities>
-    <app-geolocation
-        (getCityByGeolocation)="onSetCity($event)"
-    ></app-geolocation>
+    <div class="flex align-center gap-medium">
+        <app-search-cities></app-search-cities>
+        <app-toggle-methods
+            [method]="method$ | async"
+            (toggleMethod)="onToggleMethod()"
+        ></app-toggle-methods>
+        <app-geolocation
+            (getCityByGeolocation)="onSetCity($event)"
+        ></app-geolocation>
+    </div>
     <div
         class="flex column align-center gap-large justify-center w100 weather-container"
     >
@@ -11,6 +17,7 @@
                 *ngIf="weather"
                 [weather]="weather"
                 [selectedCity]="selectedCity$ | async"
+                [method]="method$ | async"
                 [favoriteCities]="favoriteCities$ | async"
                 (toggleFavorite)="onToggleFavorite($event)"
             ></app-weather-view>

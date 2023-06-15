@@ -1,12 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { RootState } from '@app/store/root.reducer'
 import { selectCity, toggleFavorite } from '@app/store/weather/weather.actions'
 import { Store } from '@ngrx/store'
 import { City } from '@shared/models/city.model'
 import { Forecast } from '@shared/models/forecast.model'
 import { Weather } from '@shared/models/weather.model'
-import { WeatherService } from '@shared/services/weather/weather.service'
-import { Observable, Subscription, tap } from 'rxjs'
+import { WeatherService } from '@core/services/weather/weather.service'
+import { Subscription, tap } from 'rxjs'
+import {
+    selectFavoriteCities,
+    selectSelectedCity,
+} from '@store/weather/weather.selectors'
+import { selectMethod } from '@app/store/preferences/preferences.selectors'
+import { toggleMethod } from '@app/store/preferences/preferences.actions'
 
 @Component({
     selector: 'app-weather',
@@ -15,17 +20,13 @@ import { Observable, Subscription, tap } from 'rxjs'
 })
 export class WeatherComponent implements OnInit, OnDestroy {
     constructor(private store: Store, private weatherService: WeatherService) {}
-
     weather: Weather | null = null
     forecast: Forecast | null = null
     subscription: Subscription | null = null
 
-    selectedCity$: Observable<City> = this.store.select(
-        (state: any) => state.weather.selectedCity
-    )
-    favoriteCities$: Observable<City[]> = this.store.select(
-        (state: any) => state.weather.favoriteCities
-    )
+    selectedCity$ = this.store.select(selectSelectedCity)
+    favoriteCities$ = this.store.select(selectFavoriteCities)
+    method$ = this.store.select(selectMethod)
 
     async onCityChange(city: City | null) {
         if (!city) return
@@ -44,6 +45,10 @@ export class WeatherComponent implements OnInit, OnDestroy {
 
     onSetCity(city: City) {
         this.store.dispatch(selectCity({ city }))
+    }
+
+    onToggleMethod() {
+        this.store.dispatch(toggleMethod())
     }
 
     ngOnInit(): void {

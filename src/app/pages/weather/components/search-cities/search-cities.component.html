@@ -1,6 +1,7 @@
 <app-search
     [options]="cities"
     [value]="query"
+    [isLoad]="isLoad"
     labelKey="LocalizedName"
     (valueChange)="onQueryChange($event)"
     (selectOption)="onOptionClick($event)"

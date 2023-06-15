@@ -2,18 +2,15 @@ import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
-import { HttpClientModule } from '@angular/common/http'
-import { CoreModule } from './core/core.module'
+import { CoreModule } from '@core/core.module'
 import { StoreModule } from '@ngrx/store'
-import rootReducer from './store/root.reducer'
-import { ToggleComponent } from './shared/ui/toggle/toggle.component'
+import rootReducer from '@store/root.reducer'
 
 @NgModule({
     declarations: [AppComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        HttpClientModule,
         CoreModule,
         StoreModule.forRoot(rootReducer),
     ],

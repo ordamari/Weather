@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core'
 import { City } from '@shared/models/city.model'
-import { GeolocationService } from '@shared/services/geolocation/geolocation.service'
-import { WeatherService } from '@shared/services/weather/weather.service'
+import { GeolocationService } from '@core/services/geolocation/geolocation.service'
+import { WeatherService } from '@core/services/weather/weather.service'
+import { faLocationCrosshairs } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
     selector: 'app-geolocation',
@@ -9,11 +10,11 @@ import { WeatherService } from '@shared/services/weather/weather.service'
     styleUrls: ['./geolocation.component.scss'],
 })
 export class GeolocationComponent {
+    faLocationCrosshairs = faLocationCrosshairs
     constructor(
         private geolocationService: GeolocationService,
         private weatherService: WeatherService
     ) {}
-
     @Output() getCityByGeolocation = new EventEmitter<City>()
 
     async getLocation() {

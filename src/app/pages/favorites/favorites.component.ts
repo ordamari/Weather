@@ -4,6 +4,7 @@ import { selectCity, toggleFavorite } from '@app/store/weather/weather.actions'
 import { Store } from '@ngrx/store'
 import { City } from '@shared/models/city.model'
 import { Observable } from 'rxjs'
+import { selectFavoriteCities } from '@store/weather/weather.selectors'
 
 @Component({
     selector: 'app-favorites',
@@ -13,9 +14,8 @@ import { Observable } from 'rxjs'
 export class FavoritesComponent {
     constructor(private store: Store, private router: Router) {}
 
-    favoriteCities$: Observable<City[]> = this.store.select(
-        (state: any) => state.weather.favoriteCities
-    )
+    favoriteCities$: Observable<City[]> =
+        this.store.select(selectFavoriteCities)
 
     onToggleFavorite(city: City) {
         this.store.dispatch(toggleFavorite({ city }))

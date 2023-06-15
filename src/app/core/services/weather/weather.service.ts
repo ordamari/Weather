@@ -2,21 +2,27 @@ import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { firstValueFrom, map } from 'rxjs'
 import { Weather, weatherSchema } from '@shared/models/weather.model'
-import { parseResponse } from '@shared/utils/parse-response.operator'
 import { environment } from '@env/environment'
 import citiesStub from '@shared/data/cities'
 import weatherStub from '@shared/data/weather'
 import forecastStub from '@shared/data/forecast'
-import { City, citySchema } from '@shared/models/city.model'
+import { City, citiesSchema, citySchema } from '@shared/models/city.model'
 import { Forecast, forecastSchema } from '@shared/models/forecast.model'
+import { ZodUtils } from '@core/utils/zod.utils'
+import { Store } from '@ngrx/store'
+import { selectMethod } from '@app/store/preferences/preferences.selectors'
+import { Method } from '@shared/enums/method.enum'
 
 @Injectable({
     providedIn: 'root',
 })
 export class WeatherService {
     private BASE_URL = 'http://dataservice.accuweather.com/'
-    constructor(private http: HttpClient) {}
-
+    constructor(
+        private http: HttpClient,
+        private zodUtils: ZodUtils,
+        private store: Store
+    ) {}
     public async getCities(query: string) {
         if (query.length <= 2) return []
         return citiesStub as City[]
@@ -27,7 +33,7 @@ export class WeatherService {
                     q: query,
                 },
             })
-            .pipe(parseResponse(citySchema))
+            .pipe(this.zodUtils.parseResponse(citiesSchema))
         const cities = await firstValueFrom($res)
         return cities
     }
@@ -42,7 +48,7 @@ export class WeatherService {
             })
             .pipe(
                 map((weathers: Weather[]) => weathers[0]),
-                parseResponse(weatherSchema)
+                this.zodUtils.parseResponse(weatherSchema)
             )
         const weather = await firstValueFrom($res)
         return weather
@@ -50,14 +56,16 @@ export class WeatherService {
 
     public async getForecast(key: string) {
         return forecastStub as Forecast
+        const method$ = this.store.select(selectMethod)
+        const method = await firstValueFrom(method$)
         const $res = this.http
             .get<Forecast>(`${this.BASE_URL}forecasts/v1/daily/5day/${key}`, {
                 params: {
                     apikey: environment.WEATHER_API_KEY,
-                    metric: 'true',
+                    metric: method === Method.Metric ? 'true' : 'false',
                 },
             })
-            .pipe(parseResponse(forecastSchema))
+            .pipe(this.zodUtils.parseResponse(forecastSchema))
         const forecast = await firstValueFrom($res)
         return forecast
     }
@@ -74,7 +82,7 @@ export class WeatherService {
                     },
                 }
             )
-            .pipe(parseResponse(citySchema))
+            .pipe(this.zodUtils.parseResponse(citySchema))
         const city = await firstValueFrom($res)
         return city
     }

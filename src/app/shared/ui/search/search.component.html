@@ -1,15 +1,26 @@
 <div class="search-container">
     <div class="input-container">
-        <input autocomplete="off" [(ngModel)]="value" type="text" />
-        <fa-icon [icon]="faSearch"></fa-icon>
+        <input
+            (keydown)="onKeyDown($event)"
+            autocomplete="off"
+            [(ngModel)]="value"
+            type="text"
+            (focus)="isFocused = true"
+            (blur)="onBlur()"
+        />
+        <fa-icon *ngIf="!isLoad" [icon]="faSearch"></fa-icon>
+        <div *ngIf="isLoad" class="loader-container">
+            <app-loader></app-loader>
+        </div>
     </div>
-    <div *ngIf="isShowOptions" class="options">
+    <div [@open-options]="showOptionsSituation" class="options">
         <button
             (click)="onOptionClick(option)"
             class="option"
-            *ngFor="let option of options"
+            *ngFor="let option of options; let i = index"
+            [class.active]="i === highlightedIndex"
         >
-            <div>{{ option[labelKey] }}</div>
+            {{ option[labelKey] }}
         </button>
     </div>
 </div>

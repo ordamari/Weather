@@ -26,7 +26,8 @@
             "@env/*": ["src/environments/*"],
             "@app/*": ["src/app/*"],
             "@assets/*": ["src/assets/*"],
-            "@root/*": ["src/*"]
+            "@root/*": ["src/*"],
+            "@store/*": ["src/app/store/*"]
         }
     },
     "angularCompilerOptions": {

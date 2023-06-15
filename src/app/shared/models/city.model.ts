@@ -16,4 +16,6 @@ export const citySchema = z.object({
     }),
 })
 
+export const citiesSchema = z.array(citySchema)
+
 export type City = z.infer<typeof citySchema>
