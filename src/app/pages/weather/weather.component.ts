@@ -5,7 +5,7 @@ import { City } from '@shared/models/city.model'
 import { Forecast } from '@shared/models/forecast.model'
 import { Weather } from '@shared/models/weather.model'
 import { WeatherService } from '@core/services/weather/weather.service'
-import { Observable, Subscription, tap } from 'rxjs'
+import { Subscription, tap } from 'rxjs'
 import {
     selectFavoriteCities,
     selectSelectedCity,
