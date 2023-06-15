@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { CoreModule } from './core/core.module'
 import { StoreModule } from '@ngrx/store'
 import rootReducer from './store/root.reducer'
+import { ToggleComponent } from './shared/ui/toggle/toggle.component'
 
 @NgModule({
     declarations: [AppComponent],
