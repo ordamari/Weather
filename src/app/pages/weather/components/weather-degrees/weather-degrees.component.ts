@@ -8,7 +8,7 @@ import { Method } from '@shared/enums/method.enum'
 })
 export class WeatherDegreesComponent {
     @Input() degrees!: number
-    @Input() method!: Method
+    @Input() method!: Method | null
 
     get methodChar(): string {
         return this.method === Method.Metric ? 'C' : 'F'

@@ -12,9 +12,12 @@ import { ForecastViewComponent } from './components/forecast-view/forecast-view.
 import { DailyForecastViewComponent } from './components/daily-forecast-view/daily-forecast-view.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { GeolocationComponent } from './components/geolocation/geolocation.component'
+import { LoaderComponent } from '@shared/ui/loader/loader.component';
+import { ToggleMethodsComponent } from './components/toggle-methods/toggle-methods.component'
 @NgModule({
     declarations: [
         WeatherComponent,
+        LoaderComponent,
         SearchComponent,
         SearchCitiesComponent,
         WeatherIconsComponent,
@@ -23,6 +26,7 @@ import { GeolocationComponent } from './components/geolocation/geolocation.compo
         ForecastViewComponent,
         DailyForecastViewComponent,
         GeolocationComponent,
+        ToggleMethodsComponent,
     ],
     imports: [
         FontAwesomeModule,

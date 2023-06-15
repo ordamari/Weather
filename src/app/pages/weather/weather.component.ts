@@ -10,6 +10,8 @@ import {
     selectFavoriteCities,
     selectSelectedCity,
 } from '@store/weather/weather.selectors'
+import { selectMethod } from '@app/store/preferences/preferences.selectors'
+import { toggleMethod } from '@app/store/preferences/preferences.actions'
 
 @Component({
     selector: 'app-weather',
@@ -18,15 +20,13 @@ import {
 })
 export class WeatherComponent implements OnInit, OnDestroy {
     constructor(private store: Store, private weatherService: WeatherService) {}
-
     weather: Weather | null = null
     forecast: Forecast | null = null
     subscription: Subscription | null = null
 
-    selectedCity$: Observable<City | null> =
-        this.store.select(selectSelectedCity)
-    favoriteCities$: Observable<City[]> =
-        this.store.select(selectFavoriteCities)
+    selectedCity$ = this.store.select(selectSelectedCity)
+    favoriteCities$ = this.store.select(selectFavoriteCities)
+    method$ = this.store.select(selectMethod)
 
     async onCityChange(city: City | null) {
         if (!city) return
@@ -45,6 +45,10 @@ export class WeatherComponent implements OnInit, OnDestroy {
 
     onSetCity(city: City) {
         this.store.dispatch(selectCity({ city }))
+    }
+
+    onToggleMethod() {
+        this.store.dispatch(toggleMethod())
     }
 
     ngOnInit(): void {

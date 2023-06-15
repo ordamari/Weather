@@ -9,13 +9,20 @@ import forecastStub from '@shared/data/forecast'
 import { City, citiesSchema, citySchema } from '@shared/models/city.model'
 import { Forecast, forecastSchema } from '@shared/models/forecast.model'
 import { ZodUtils } from '@core/utils/zod.utils'
+import { Store } from '@ngrx/store'
+import { selectMethod } from '@app/store/preferences/preferences.selectors'
+import { Method } from '@shared/enums/method.enum'
 
 @Injectable({
     providedIn: 'root',
 })
 export class WeatherService {
     private BASE_URL = 'http://dataservice.accuweather.com/'
-    constructor(private http: HttpClient, private zodUtils: ZodUtils) {}
+    constructor(
+        private http: HttpClient,
+        private zodUtils: ZodUtils,
+        private store: Store
+    ) {}
     public async getCities(query: string) {
         if (query.length <= 2) return []
         return citiesStub as City[]
@@ -49,11 +56,13 @@ export class WeatherService {
 
     public async getForecast(key: string) {
         return forecastStub as Forecast
+        const method$ = this.store.select(selectMethod)
+        const method = await firstValueFrom(method$)
         const $res = this.http
             .get<Forecast>(`${this.BASE_URL}forecasts/v1/daily/5day/${key}`, {
                 params: {
                     apikey: environment.WEATHER_API_KEY,
-                    metric: 'true',
+                    metric: method === Method.Metric ? 'true' : 'false',
                 },
             })
             .pipe(this.zodUtils.parseResponse(forecastSchema))

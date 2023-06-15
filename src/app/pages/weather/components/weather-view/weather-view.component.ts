@@ -13,8 +13,8 @@ export class WeatherViewComponent {
     @Input() selectedCity: City | null = null
     @Input() favoriteCities: City[] | null = null
     @Input() weather!: Weather
+    @Input() method: Method | null = Method.Metric
     @Output() toggleFavorite = new EventEmitter<City | null>()
-    method = Method.Metric
     faHeart = faHeart
 
     get degreesByMethod(): number {

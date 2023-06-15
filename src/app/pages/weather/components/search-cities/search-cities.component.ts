@@ -13,9 +13,11 @@ export class SearchCitiesComponent implements OnDestroy {
     query = ''
     cities: City[] = []
     timeOut: NodeJS.Timeout | null = null
+    isLoad = false
 
     constructor(private store: Store, private weatherService: WeatherService) {}
     onQueryChange(query: string) {
+        this.isLoad = true
         this.debouncedGetCities(query)
         this.query = query
     }
@@ -25,6 +27,7 @@ export class SearchCitiesComponent implements OnDestroy {
         this.timeOut = setTimeout(async () => {
             const cities = await this.weatherService.getCities(query)
             this.cities = cities
+            this.isLoad = false
         }, 500)
     }
 

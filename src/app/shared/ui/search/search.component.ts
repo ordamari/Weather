@@ -1,15 +1,25 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core'
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnDestroy,
+    Output,
+} from '@angular/core'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import openOptionsAnimation from '@shared/animations/open-options.animation'
 @Component({
     selector: 'app-search',
     templateUrl: './search.component.html',
     styleUrls: ['./search.component.scss'],
+    animations: [openOptionsAnimation],
 })
-export class SearchComponent<T extends object> {
+export class SearchComponent<T extends object> implements OnDestroy {
+    @Input() isLoad = false
     @Input() options: T[] = []
     @Input() labelKey!: keyof T
     @Input() set value(val: string) {
         this._value = val
+        this.highlightedIndex = 0
         this.valueChange.emit(val)
     }
     get value() {
@@ -19,7 +29,20 @@ export class SearchComponent<T extends object> {
     @Output() valueChange = new EventEmitter<string>()
     @Output() selectOption = new EventEmitter<T>()
 
+    get isShowOptions() {
+        return (
+            this.options.length > 0 && this.value.length > 0 && this.isFocused
+        )
+    }
+
+    get showOptionsSituation() {
+        return this.isShowOptions ? 'out' : 'in'
+    }
+
     faSearch = faSearch
+    timeout: NodeJS.Timeout | null = null
+    isFocused = false
+    highlightedIndex = 0
 
     onOptionClick(option: T) {
         this.selectOption.emit(option)
@@ -27,7 +50,41 @@ export class SearchComponent<T extends object> {
         this.value = ''
     }
 
-    get isShowOptions() {
-        return this.options.length > 0 && this.value.length > 0
+    onBlur() {
+        this.timeout = setTimeout(() => (this.isFocused = false), 500)
+    }
+
+    nextHighlightedIndex() {
+        if (this.highlightedIndex === this.options.length - 1)
+            this.highlightedIndex = 0
+        else this.highlightedIndex += 1
+    }
+
+    prevHighlightedIndex() {
+        if (this.highlightedIndex === 0)
+            this.highlightedIndex = this.options.length - 1
+        else this.highlightedIndex -= 1
+    }
+
+    onKeyDown(event: KeyboardEvent) {
+        const preventDefaultOption = ['ArrowDown', 'ArrowUp', 'Enter']
+        if (preventDefaultOption.includes(event.key)) {
+            event.preventDefault()
+            switch (event.key) {
+                case 'ArrowDown':
+                    this.nextHighlightedIndex()
+                    break
+                case 'ArrowUp':
+                    this.prevHighlightedIndex()
+                    break
+                case 'Enter':
+                    this.onOptionClick(this.options[this.highlightedIndex])
+                    break
+            }
+        }
+    }
+
+    ngOnDestroy(): void {
+        if (this.timeout) clearTimeout(this.timeout)
     }
 }
