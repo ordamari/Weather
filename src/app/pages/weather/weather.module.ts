@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router'
 import { SearchComponent } from '@shared/ui/search/search.component'
 import { FormsModule } from '@angular/forms'
 import { SearchCitiesComponent } from './components/search-cities/search-cities.component'
-import { HttpClientModule } from '@angular/common/http'
 import { WeatherIconsComponent } from './components/weather-icons/weather-icons.component'
 import { WeatherViewComponent } from './components/weather-view/weather-view.component'
 import { WeatherDegreesComponent } from './components/weather-degrees/weather-degrees.component'
@@ -28,7 +27,6 @@ import { GeolocationComponent } from './components/geolocation/geolocation.compo
     imports: [
         FontAwesomeModule,
         CommonModule,
-        HttpClientModule,
         RouterModule.forChild([{ path: '', component: WeatherComponent }]),
         FormsModule,
     ],

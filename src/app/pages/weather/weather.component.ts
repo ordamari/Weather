@@ -1,12 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { RootState } from '@app/store/root.reducer'
 import { selectCity, toggleFavorite } from '@app/store/weather/weather.actions'
 import { Store } from '@ngrx/store'
 import { City } from '@shared/models/city.model'
 import { Forecast } from '@shared/models/forecast.model'
 import { Weather } from '@shared/models/weather.model'
-import { WeatherService } from '@shared/services/weather/weather.service'
+import { WeatherService } from '@core/services/weather/weather.service'
 import { Observable, Subscription, tap } from 'rxjs'
+import {
+    selectFavoriteCities,
+    selectSelectedCity,
+} from '@store/weather/weather.selectors'
 
 @Component({
     selector: 'app-weather',
@@ -20,12 +23,10 @@ export class WeatherComponent implements OnInit, OnDestroy {
     forecast: Forecast | null = null
     subscription: Subscription | null = null
 
-    selectedCity$: Observable<City> = this.store.select(
-        (state: any) => state.weather.selectedCity
-    )
-    favoriteCities$: Observable<City[]> = this.store.select(
-        (state: any) => state.weather.favoriteCities
-    )
+    selectedCity$: Observable<City | null> =
+        this.store.select(selectSelectedCity)
+    favoriteCities$: Observable<City[]> =
+        this.store.select(selectFavoriteCities)
 
     async onCityChange(city: City | null) {
         if (!city) return

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core'
 import { City } from '@shared/models/city.model'
-import { GeolocationService } from '@shared/services/geolocation/geolocation.service'
-import { WeatherService } from '@shared/services/weather/weather.service'
+import { GeolocationService } from '@core/services/geolocation/geolocation.service'
+import { WeatherService } from '@core/services/weather/weather.service'
 
 @Component({
     selector: 'app-geolocation',

@@ -25,6 +25,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@ngrx/store": "16.0.1",
+    "ngx-toastr": "^17.0.2",
     "rxjs": "~7.5.7",
     "tslib": "^2.5.3",
     "zod": "^3.21.4",

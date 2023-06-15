@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
 import { setTheme } from '@app/store/preferences/preferences.actions'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { faCloudSun } from '@fortawesome/free-solid-svg-icons'
 import { Store } from '@ngrx/store'
 import { Theme } from '@shared/enums/theme.enum'
 import { Observable, Subscription, tap } from 'rxjs'
+import { selectTheme } from '@store/preferences/preferences.selectors'
 
 @Component({
     selector: 'app-header',
@@ -13,7 +13,7 @@ import { Observable, Subscription, tap } from 'rxjs'
     styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-    constructor(private router: Router, private store: Store) {}
+    constructor(private store: Store) {}
 
     faHeart = faHeart
     faCloudSun = faCloudSun
@@ -29,13 +29,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.store.dispatch(setTheme(val ? Theme.Light : Theme.Dark))
     }
 
-    theme$: Observable<Theme> = this.store
-        .select((state: any) => state.preferences.theme)
-        .pipe(
-            tap((theme: Theme) => {
-                this.isLightMode = theme === Theme.Light
-            })
-        )
+    theme$: Observable<Theme> = this.store.select(selectTheme).pipe(
+        tap((theme: Theme) => {
+            this.isLightMode = theme === Theme.Light
+        })
+    )
 
     ngOnInit(): void {
         this.subscription = this.theme$.subscribe()
