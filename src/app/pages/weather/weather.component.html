@@ -1,5 +1,8 @@
 <div class="page weather flex column align-center">
     <app-search-cities></app-search-cities>
+    <app-geolocation
+        (getCityByGeolocation)="onSetCity($event)"
+    ></app-geolocation>
     <div
         class="flex column align-center gap-large justify-center w100 weather-container"
     >

@@ -61,4 +61,21 @@ export class WeatherService {
         const forecast = await firstValueFrom($res)
         return forecast
     }
+
+    public async getCityByGeolocation(lat: number, lon: number) {
+        return citiesStub[0] as City
+        const $res = this.http
+            .get<Forecast>(
+                `${this.BASE_URL}locations/v1/cities/geoposition/search`,
+                {
+                    params: {
+                        apikey: environment.WEATHER_API_KEY,
+                        q: `${lat},${lon}`,
+                    },
+                }
+            )
+            .pipe(parseResponse(citySchema))
+        const city = await firstValueFrom($res)
+        return city
+    }
 }

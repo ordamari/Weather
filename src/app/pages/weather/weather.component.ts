@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { RootState } from '@app/store/root.reducer'
-import { toggleFavorite } from '@app/store/weather/weather.actions'
+import { selectCity, toggleFavorite } from '@app/store/weather/weather.actions'
 import { Store } from '@ngrx/store'
 import { City } from '@shared/models/city.model'
 import { Forecast } from '@shared/models/forecast.model'
 import { Weather } from '@shared/models/weather.model'
-import { WeatherService } from '@shared/services/weather.service'
+import { WeatherService } from '@shared/services/weather/weather.service'
 import { Observable, Subscription, tap } from 'rxjs'
 
 @Component({
@@ -40,6 +40,10 @@ export class WeatherComponent implements OnInit, OnDestroy {
     onToggleFavorite(city: City | null) {
         if (!city) return
         this.store.dispatch(toggleFavorite({ city }))
+    }
+
+    onSetCity(city: City) {
+        this.store.dispatch(selectCity({ city }))
     }
 
     ngOnInit(): void {
