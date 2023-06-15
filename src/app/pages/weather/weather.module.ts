@@ -12,6 +12,7 @@ import { WeatherDegreesComponent } from './components/weather-degrees/weather-de
 import { ForecastViewComponent } from './components/forecast-view/forecast-view.component'
 import { DailyForecastViewComponent } from './components/daily-forecast-view/daily-forecast-view.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { GeolocationComponent } from './components/geolocation/geolocation.component'
 @NgModule({
     declarations: [
         WeatherComponent,
@@ -22,6 +23,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
         WeatherDegreesComponent,
         ForecastViewComponent,
         DailyForecastViewComponent,
+        GeolocationComponent,
     ],
     imports: [
         FontAwesomeModule,

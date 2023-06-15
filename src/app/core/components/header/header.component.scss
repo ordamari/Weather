@@ -1,6 +1,11 @@
 .header {
   background-color: var(--near-background-color);
   padding: var(--large-gap);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--large-font-size);
+
 
   ul {
     display: flex;

@@ -4,12 +4,19 @@ import { ensureModuleLoadedOnce } from '@core/guards/ensureModuleLoadedOnce.guar
 import { HeaderComponent } from './components/header/header.component'
 import { AppRoutingModule } from '@app/app-routing.module'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { ToggleComponent } from '@shared/ui/toggle/toggle.component'
+import { CommonModule } from '@angular/common'
 
 @NgModule({
-    imports: [HttpClientModule, AppRoutingModule, FontAwesomeModule],
+    imports: [
+        HttpClientModule,
+        AppRoutingModule,
+        FontAwesomeModule,
+        CommonModule,
+    ],
     providers: [],
     exports: [HeaderComponent],
-    declarations: [HeaderComponent],
+    declarations: [HeaderComponent, ToggleComponent],
 })
 export class CoreModule {
     constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

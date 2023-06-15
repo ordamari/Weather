@@ -1,8 +1,8 @@
 import { Component, OnDestroy } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { City } from '@shared/models/city.model'
-import { WeatherService } from '@shared/services/weather.service'
 import { selectCity } from '@app/store/weather/weather.actions'
+import { WeatherService } from '@shared/services/weather/weather.service'
 
 @Component({
     selector: 'app-search-cities',
