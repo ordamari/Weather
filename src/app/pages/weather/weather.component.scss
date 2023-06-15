@@ -1,0 +1,7 @@
+.weather-container {
+  margin-top: calc(2 * var(--extra-large-gap));
+  background-color: var(--near-background-color);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--medium-border-radius);
+  padding: var(--large-gap);
+}

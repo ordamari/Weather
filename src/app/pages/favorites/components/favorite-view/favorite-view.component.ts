@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { City } from '@shared/models/city.model'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
     selector: 'app-favorite-view',
@@ -9,4 +10,6 @@ import { City } from '@shared/models/city.model'
 export class FavoriteViewComponent {
     @Input() city!: City
     @Output() removeFavorite = new EventEmitter<City>()
+    @Output() selectCity = new EventEmitter<City>()
+    faHeart = faHeart
 }

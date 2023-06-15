@@ -1,20 +1,19 @@
 .weather-view {
 
-  margin-block: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: var(--extra-large-font-size);
 
   .icon-container {
-    width: 200px;
+    width: 90px;
     height: 110px;
   }
-
-  font-size: var(--extra-large-font-size);
 
   .date {
     font-size: var(--small-font-size);
     font-weight: var(--bold);
   }
-
-
 
   .text,
   .country {
@@ -28,15 +27,20 @@
   .favorite {
     background-color: transparent;
     border: none;
-    color: var(--near-background-color);
+    color: var(--background-color);
     font-size: 4rem;
     cursor: pointer;
-    padding-inline-start: 4rem;
 
     &.active {
-      color: #ffaf04
+      color: var(--favorite-color)
     }
 
+  }
+
+  @media (max-width: 500px) {
+    .first-section {
+      display: none;
+    }
   }
 
 

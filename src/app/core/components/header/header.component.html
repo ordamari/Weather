@@ -2,11 +2,15 @@
     <nav>
         <ul>
             <li>
-                <a routerLink="/weather" routerLinkActive="active">Weather</a>
+                <a routerLink="/weather" routerLinkActive="active">
+                    <fa-icon [icon]="faCloudSun"></fa-icon>
+                    Weather
+                </a>
             </li>
             <li>
-                <a routerLink="/favorites" routerLinkActive="active"
-                    >Favorites</a
+                <a routerLink="/favorites" routerLinkActive="active">
+                    <fa-icon [icon]="faHeart"></fa-icon>
+                    Favorites</a
                 >
             </li>
         </ul>
