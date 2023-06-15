@@ -15,13 +15,14 @@
         border-radius: var(--medium-border-radius);
         display: block;
         transition: var(--transition);
+        color: var(--light-gray);
 
         &:not(.active):hover {
           scale: 1.1;
         }
 
         &.active {
-          text-decoration: underline;
+          color: var(--text-color);
         }
       }
     }

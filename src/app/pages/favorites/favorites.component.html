@@ -1,4 +1,7 @@
-<app-favorites-view
-    [favoriteCities]="favoriteCities$ | async"
-    (removeFavorite)="onToggleFavorite($event)"
-></app-favorites-view>
+<div class="favorites page">
+    <app-favorites-view
+        [favoriteCities]="favoriteCities$ | async"
+        (removeFavorite)="onToggleFavorite($event)"
+        (selectCity)="onSelectCity($event)"
+    ></app-favorites-view>
+</div>

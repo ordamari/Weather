@@ -1,0 +1,36 @@
+.city {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--near-background-color);
+  height: 100%;
+  padding: var(--large-gap);
+  border-radius: var(--medium-border-radius);
+  box-shadow: var(--box-shadow);
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .country {
+    font-size: var(--small-font-size);
+    font-weight: var(--bold);
+  }
+
+  .name {
+    font-size: var(--extra-large-font-size);
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+
+  .remove-button {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 4rem;
+    cursor: pointer;
+    color: var(--favorite-color)
+  }
+}

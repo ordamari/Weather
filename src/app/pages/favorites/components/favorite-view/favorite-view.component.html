@@ -1,7 +1,14 @@
 <li class="city">
-    <span class="country">
-        {{ city.Country.LocalizedName }}
-    </span>
-    <span class="name">{{ city.LocalizedName }}</span>
-    <button (click)="removeFavorite.emit(city)">remove</button>
+    <div class="text-container">
+        <span class="country">
+            {{ city.Country.LocalizedName }}
+        </span>
+        <button (click)="selectCity.emit(city)" class="name">
+            {{ city.LocalizedName }}
+        </button>
+        <span class="key">({{ city.Key }})</span>
+    </div>
+    <button class="remove-button" (click)="removeFavorite.emit(city)">
+        <fa-icon [icon]="faHeart"></fa-icon>
+    </button>
 </li>

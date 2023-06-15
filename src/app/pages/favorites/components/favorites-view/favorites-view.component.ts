@@ -9,4 +9,5 @@ import { City } from '@shared/models/city.model'
 export class FavoritesViewComponent {
     @Input() favoriteCities: City[] | null = []
     @Output() removeFavorite = new EventEmitter<City>()
+    @Output() selectCity = new EventEmitter<City>()
 }

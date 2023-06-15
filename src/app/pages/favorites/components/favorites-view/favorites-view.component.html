@@ -3,6 +3,7 @@
         *ngFor="let city of favoriteCities"
         [city]="city"
         (removeFavorite)="removeFavorite.emit($event)"
+        (selectCity)="selectCity.emit($event)"
     >
     </app-favorite-view>
 </ul>
