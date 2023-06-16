@@ -1,7 +1,7 @@
-import preferencesReducer, {
-    PreferencesState,
-} from './preferences/preferences.reducer'
-import weatherReducer, { WeatherState } from './weather/weather.reducer'
+import preferencesReducer from './preferences/preferences.reducer'
+import { PreferencesState } from './preferences/preferences.state'
+import weatherReducer from './weather/weather.reducer'
+import { WeatherState } from './weather/weather.state'
 
 export default {
     weather: weatherReducer,

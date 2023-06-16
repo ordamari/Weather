@@ -2,16 +2,9 @@ import { createReducer, on, ActionReducer } from '@ngrx/store'
 import { Method } from '@shared/enums/method.enum'
 import { Theme } from '@shared/enums/theme.enum'
 import { setTheme, toggleMethod } from './preferences.actions'
+import initialState, { PreferencesState } from './preferences.state'
 
-export type PreferencesState = {
-    method: Method
-    theme: Theme
-}
-
-const preferencesState = {
-    method: Method.Metric,
-    theme: Theme.Light,
-} as PreferencesState
+const preferencesState = initialState
 
 const preferencesReducer: ActionReducer<PreferencesState> = createReducer(
     preferencesState,
