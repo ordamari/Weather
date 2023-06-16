@@ -4,7 +4,7 @@
             <app-weather-icons
                 [icon]="weather.WeatherIcon"
                 [alt]="weather.WeatherText"
-            ></app-weather-icons>
+            />
         </div>
         <span class="text">{{ weather.WeatherText }}</span>
     </div>
@@ -18,10 +18,7 @@
             }}</span>
             <span class="city">{{ selectedCity.LocalizedName }}</span>
         </div>
-        <app-weather-degrees
-            [degrees]="degreesByMethod"
-            [method]="method"
-        ></app-weather-degrees>
+        <app-weather-degrees [degrees]="degreesByMethod" [method]="method" />
     </div>
     <div>
         <button

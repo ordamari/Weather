@@ -3,9 +3,6 @@ import { HttpClient } from '@angular/common/http'
 import { firstValueFrom, map } from 'rxjs'
 import { Weather, weatherSchema } from '@shared/models/weather.model'
 import { environment } from '@env/environment'
-import citiesStub from '@shared/data/cities'
-import weatherStub from '@shared/data/weather'
-import forecastStub from '@shared/data/forecast'
 import { City, citiesSchema, citySchema } from '@shared/models/city.model'
 import { Forecast, forecastSchema } from '@shared/models/forecast.model'
 import { ZodUtils } from '@core/utils/zod.utils'
@@ -17,7 +14,7 @@ import { Method } from '@shared/enums/method.enum'
     providedIn: 'root',
 })
 export class WeatherService {
-    private BASE_URL = 'http://dataservice.accuweather.com/'
+    private BASE_URL = 'https://dataservice.accuweather.com/'
     constructor(
         private http: HttpClient,
         private zodUtils: ZodUtils,
@@ -25,7 +22,6 @@ export class WeatherService {
     ) {}
     public async getCities(query: string) {
         if (query.length <= 2) return Array<City>()
-        return citiesStub as Array<City>
         const $res = this.http
             .get<City[]>(`${this.BASE_URL}locations/v1/cities/autocomplete`, {
                 params: {
@@ -39,7 +35,6 @@ export class WeatherService {
     }
 
     public async getWeather(key: string) {
-        return weatherStub[0] as Weather
         const $res = this.http
             .get<Weather[]>(`${this.BASE_URL}currentconditions/v1/${key}`, {
                 params: {
@@ -55,7 +50,6 @@ export class WeatherService {
     }
 
     public async getForecast(key: string) {
-        return forecastStub as Forecast
         const method$ = this.store.select(selectMethod)
         const method = await firstValueFrom(method$)
         const $res = this.http
@@ -71,7 +65,6 @@ export class WeatherService {
     }
 
     public async getCityByGeolocation(lat: number, lon: number) {
-        return citiesStub[0] as City
         const $res = this.http
             .get<Forecast>(
                 `${this.BASE_URL}locations/v1/cities/geoposition/search`,

@@ -8,9 +8,9 @@
             (focus)="isFocused = true"
             (blur)="onBlur()"
         />
-        <fa-icon *ngIf="!isLoad" [icon]="faSearch"></fa-icon>
+        <fa-icon *ngIf="!isLoad" [icon]="faSearch" />
         <div *ngIf="isLoad" class="loader-container">
-            <app-loader></app-loader>
+            <app-loader />
         </div>
     </div>
     <div [@open-options]="showOptionsSituation" class="options">
@@ -21,14 +21,15 @@
                 animation="pulse"
                 [theme]="skeletonTheme"
                 loadingText="Loading..."
-            ></ngx-skeleton-loader>
+            />
         </div>
         <ng-container *ngIf="!isLoad">
-            <ng-container
-                *ngFor="let option of options; let i = index"
-                [class.active]="i === highlightedIndex"
-            >
-                <button (click)="onOptionClick(option)" class="option">
+            <ng-container *ngFor="let option of options; let i = index">
+                <button
+                    [class.active]="i === highlightedIndex"
+                    (click)="onOptionClick(option)"
+                    class="option"
+                >
                     {{ option[labelKey] }}
                 </button>
             </ng-container>

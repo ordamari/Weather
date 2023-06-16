@@ -1,0 +1,73 @@
+<div class="weather-view-skeleton">
+    <ngx-skeleton-loader
+        count="1"
+        appearance="circle"
+        animation="pulse"
+        [theme]="largeIconsTheme"
+    />
+    <div class="texts flex column gap-small">
+        <ngx-skeleton-loader
+            count="1"
+            appearance="line"
+            animation="pulse"
+            [theme]="smallTextTheme"
+        />
+        <ngx-skeleton-loader
+            count="1"
+            appearance="line"
+            animation="pulse"
+            [theme]="largeTextTheme"
+        />
+        <ngx-skeleton-loader
+            count="1"
+            appearance="line"
+            animation="pulse"
+            [theme]="smallTextTheme"
+        />
+        <ngx-skeleton-loader
+            count="1"
+            appearance="line"
+            animation="pulse"
+            [theme]="largeTextTheme"
+        />
+    </div>
+    <ngx-skeleton-loader
+        count="1"
+        appearance="circle"
+        animation="pulse"
+        [theme]="largeIconsTheme"
+    />
+</div>
+
+<div class="forecast-skeleton">
+    <div
+        *ngFor="let item of [1, 2, 3, 4, 5]"
+        class="flex column gap-small align-center"
+    >
+        <ngx-skeleton-loader
+            count="1"
+            appearance="line"
+            animation="pulse"
+            [theme]="smallTextTheme"
+        />
+        <ngx-skeleton-loader
+            count="1"
+            appearance="circle"
+            animation="pulse"
+            [theme]="smallIconsTheme"
+        />
+        <ngx-skeleton-loader
+            count="1"
+            appearance="line"
+            animation="pulse"
+            [theme]="largeTextTheme"
+        />
+    </div>
+</div>
+
+<ngx-skeleton-loader
+    count="1"
+    appearance="line"
+    animation="pulse"
+    [theme]="lineTheme"
+/>

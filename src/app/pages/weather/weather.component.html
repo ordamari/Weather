@@ -12,21 +12,31 @@
     <div
         class="flex column align-center gap-large justify-center w100 weather-container"
     >
-        <div class="w100">
-            <app-weather-view
-                *ngIf="weather"
-                [weather]="weather"
-                [selectedCity]="selectedCity$ | async"
-                [method]="method$ | async"
-                [favoriteCities]="favoriteCities$ | async"
-                (toggleFavorite)="onToggleFavorite($event)"
-            />
+        <ng-container *ngIf="weather && forecast && !hasError">
+            <div class="w100">
+                <app-weather-view
+                    [weather]="weather"
+                    [selectedCity]="selectedCity$ | async"
+                    [method]="method$ | async"
+                    [favoriteCities]="favoriteCities$ | async"
+                    (toggleFavorite)="onToggleFavorite($event)"
+                />
+            </div>
+            <div class="w100">
+                <app-forecast-view *ngIf="forecast" [forecast]="forecast" />
+            </div>
+            <div class="w100">
+                <app-area-chart-forecast [forecast]="forecast" />
+            </div>
+        </ng-container>
+
+        <div *ngIf="isLoad && !hasError" class="w100">
+            <app-skeleton-weather [theme]="theme$ | async" />
         </div>
-        <div class="w100">
-            <app-forecast-view *ngIf="forecast" [forecast]="forecast" />
-        </div>
-        <div class="w100">
-            <app-area-chart-forecast *ngIf="forecast" [forecast]="forecast" />
+
+        <div *ngIf="hasError" class="error-container">
+            Something happened please try again later
+            <button (click)="onTryAgain()">Try again</button>
         </div>
     </div>
 </div>
