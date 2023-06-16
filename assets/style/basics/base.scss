@@ -1,18 +1,18 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    outline: none;
-    font-family: 'assistant', 'Noto Color Emoji', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: 'Lato', sans-serif;
 }
 
 html {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    height: 100%;
-    margin: 0;
+  height: 100%;
+  margin: 0;
 }
 
 h1,
@@ -21,20 +21,20 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 
 button,
 a {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #__next,
 .App {
-    height: 100%;
+  height: 100%;
 }
 
 ul {
-    list-style: none;
+  list-style: none;
 }
