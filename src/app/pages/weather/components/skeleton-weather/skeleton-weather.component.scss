@@ -1,0 +1,14 @@
+:root {
+  width: 100%;
+}
+
+.weather-view-skeleton {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 2px;
+}
+
+.forecast-skeleton {
+  display: flex;
+  justify-content: space-evenly;
+}

@@ -15,6 +15,8 @@ import { ToggleMethodsComponent } from './components/toggle-methods/toggle-metho
 import { AreaChartForecastComponent } from './components/area-chart-forecast/area-chart-forecast.component'
 import { NgxChartsModule } from '@swimlane/ngx-charts'
 import { SearchModule } from '@shared/ui/search/search.module'
+import { SkeletonWeatherComponent } from './components/skeleton-weather/skeleton-weather.component'
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader'
 
 @NgModule({
     declarations: [
@@ -28,8 +30,10 @@ import { SearchModule } from '@shared/ui/search/search.module'
         GeolocationComponent,
         ToggleMethodsComponent,
         AreaChartForecastComponent,
+        SkeletonWeatherComponent,
     ],
     imports: [
+        NgxSkeletonLoaderModule,
         SearchModule,
         NgxChartsModule,
         FontAwesomeModule,

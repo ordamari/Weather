@@ -5,3 +5,20 @@
   border-radius: var(--medium-border-radius);
   padding: var(--large-gap);
 }
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--large-gap);
+  font-size: var(--large-font-size);
+  text-align: center;
+
+  button {
+    background-color: var(--favorite-color);
+    border: none;
+    padding: var(--small-gap) var(--medium-gap);
+    font-size: var(--large-font-size);
+    color: var(--text-color);
+  }
+}

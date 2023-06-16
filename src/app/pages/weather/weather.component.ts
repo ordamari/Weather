@@ -9,7 +9,10 @@ import {
     selectFavoriteCities,
     selectSelectedCity,
 } from '@store/weather/weather.selectors'
-import { selectMethod } from '@app/store/preferences/preferences.selectors'
+import {
+    selectMethod,
+    selectTheme,
+} from '@app/store/preferences/preferences.selectors'
 import { toggleMethod } from '@app/store/preferences/preferences.actions'
 import { selectCity, toggleFavorite } from '@app/store/weather/weather.actions'
 
@@ -28,15 +31,25 @@ export class WeatherComponent implements OnInit, OnDestroy {
     selectedCity$ = this.store.select(selectSelectedCity)
     favoriteCities$ = this.store.select(selectFavoriteCities)
     method$ = this.store.select(selectMethod)
+    theme$ = this.store.select(selectTheme)
+    hasError = false
+
+    get isLoad() {
+        return !this.weather || !this.forecast
+    }
 
     async onCityChange(city: City | null) {
         if (!city) return
-        const [weather, forecast] = await Promise.all([
-            await this.weatherService.getWeather(city.Key),
-            await this.weatherService.getForecast(city.Key),
-        ])
-        this.weather = weather
-        this.forecast = forecast
+        try {
+            const [weather, forecast] = await Promise.all([
+                await this.weatherService.getWeather(city.Key),
+                await this.weatherService.getForecast(city.Key),
+            ])
+            this.weather = weather
+            this.forecast = forecast
+        } catch (e) {
+            this.hasError = true
+        }
     }
 
     async onMethodChange() {
@@ -70,5 +83,11 @@ export class WeatherComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.weatherSubscription?.unsubscribe()
         this.methodSubscription?.unsubscribe()
+    }
+
+    async onTryAgain() {
+        this.hasError = false
+        const selectedCity = await firstValueFrom(this.selectedCity$)
+        if (selectedCity) this.onCityChange(selectedCity)
     }
 }

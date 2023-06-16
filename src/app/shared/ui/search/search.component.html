@@ -21,7 +21,7 @@
                 animation="pulse"
                 [theme]="skeletonTheme"
                 loadingText="Loading..."
-            ></ngx-skeleton-loader>
+            />
         </div>
         <ng-container *ngIf="!isLoad">
             <ng-container *ngFor="let option of options; let i = index">
