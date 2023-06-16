@@ -24,8 +24,8 @@ export class WeatherService {
         private store: Store
     ) {}
     public async getCities(query: string) {
-        if (query.length <= 2) return []
-        return citiesStub as City[]
+        if (query.length <= 2) return Array<City>()
+        return citiesStub as Array<City>
         const $res = this.http
             .get<City[]>(`${this.BASE_URL}locations/v1/cities/autocomplete`, {
                 params: {
@@ -84,6 +84,6 @@ export class WeatherService {
             )
             .pipe(this.zodUtils.parseResponse(citySchema))
         const city = await firstValueFrom($res)
-        return city
+        return city as unknown as City
     }
 }

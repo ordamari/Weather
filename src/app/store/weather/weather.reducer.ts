@@ -1,18 +1,8 @@
 import { createReducer, on, ActionReducer } from '@ngrx/store'
-import defaultCity from '@shared/data/defaultCity'
-import cities from '@shared/data/cities'
-import { City } from '@shared/models/city.model'
 import { selectCity, toggleFavorite } from './weather.actions'
+import initialState, { WeatherState } from './weather.state'
 
-export type WeatherState = {
-    selectedCity: City | null
-    favoriteCities: City[]
-}
-
-const weatherState = {
-    selectedCity: defaultCity,
-    favoriteCities: cities,
-} as WeatherState
+const weatherState = initialState
 
 const weatherReducer: ActionReducer<WeatherState> = createReducer(
     weatherState,
