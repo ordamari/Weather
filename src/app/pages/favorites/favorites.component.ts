@@ -5,6 +5,7 @@ import { City } from '@shared/models/city.model'
 import { Observable } from 'rxjs'
 import { selectFavoriteCities } from '@store/weather/weather.selectors'
 import { selectCity, toggleFavorite } from '@app/store/weather/weather.actions'
+import { ToastrService } from 'ngx-toastr'
 
 @Component({
     selector: 'app-favorites',
@@ -12,13 +13,18 @@ import { selectCity, toggleFavorite } from '@app/store/weather/weather.actions'
     styleUrls: ['./favorites.component.scss'],
 })
 export class FavoritesComponent {
-    constructor(private store: Store, private router: Router) {}
+    constructor(
+        private store: Store,
+        private router: Router,
+        private toastr: ToastrService
+    ) {}
 
     favoriteCities$: Observable<City[]> =
         this.store.select(selectFavoriteCities)
 
     onToggleFavorite(city: City) {
         this.store.dispatch(toggleFavorite({ city }))
+        this.toastr.success(`${city.LocalizedName} removed from favorites`)
     }
 
     onSelectCity(city: City) {

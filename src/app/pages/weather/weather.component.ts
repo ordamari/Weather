@@ -15,6 +15,7 @@ import {
 } from '@app/store/preferences/preferences.selectors'
 import { toggleMethod } from '@app/store/preferences/preferences.actions'
 import { selectCity, toggleFavorite } from '@app/store/weather/weather.actions'
+import { ToastrService } from 'ngx-toastr'
 
 @Component({
     selector: 'app-weather',
@@ -22,7 +23,11 @@ import { selectCity, toggleFavorite } from '@app/store/weather/weather.actions'
     styleUrls: ['./weather.component.scss'],
 })
 export class WeatherComponent implements OnInit, OnDestroy {
-    constructor(private store: Store, private weatherService: WeatherService) {}
+    constructor(
+        private store: Store,
+        private weatherService: WeatherService,
+        private toastr: ToastrService
+    ) {}
     weather: Weather | null = null
     forecast: Forecast | null = null
     weatherSubscription: Subscription | null = null
@@ -58,9 +63,17 @@ export class WeatherComponent implements OnInit, OnDestroy {
         this.forecast = await this.weatherService.getForecast(city.Key)
     }
 
-    onToggleFavorite(city: City | null) {
+    private isCityFavorite(city: City, favoriteCities: City[]) {
+        return favoriteCities.some((c) => c.Key === city.Key)
+    }
+
+    async onToggleFavorite(city: City | null) {
         if (!city) return
         this.store.dispatch(toggleFavorite({ city }))
+        const favoriteCities = await firstValueFrom(this.favoriteCities$)
+        if (this.isCityFavorite(city, favoriteCities))
+            this.toastr.success(`${city.LocalizedName} added to favorites`)
+        else this.toastr.success(`${city.LocalizedName} removed from favorites`)
     }
 
     onSetCity(city: City) {
