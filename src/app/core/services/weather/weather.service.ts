@@ -17,7 +17,7 @@ import { Method } from '@shared/enums/method.enum'
     providedIn: 'root',
 })
 export class WeatherService {
-    private BASE_URL = 'http://dataservice.accuweather.com/'
+    private BASE_URL = 'https://dataservice.accuweather.com/'
     constructor(
         private http: HttpClient,
         private zodUtils: ZodUtils,
@@ -25,7 +25,7 @@ export class WeatherService {
     ) {}
     public async getCities(query: string) {
         if (query.length <= 2) return Array<City>()
-        return citiesStub as Array<City>
+        // return citiesStub as Array<City>
         const $res = this.http
             .get<City[]>(`${this.BASE_URL}locations/v1/cities/autocomplete`, {
                 params: {

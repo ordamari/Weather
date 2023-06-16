@@ -2,6 +2,17 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self';
+            worker-src 'self';
+            font-src 'self' https://fonts.gstatic.com;
+            frame-src 'none';
+            connect-src 'self' https://dataservice.accuweather.com;
+            img-src data: https: http:;
+            script-src 'self' 'unsafe-inline' 'unsafe-eval';
+            style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;"
+        />
         <title>Weather</title>
         <base href="/" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
