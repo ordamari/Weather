@@ -24,11 +24,12 @@
             ></ngx-skeleton-loader>
         </div>
         <ng-container *ngIf="!isLoad">
-            <ng-container
-                *ngFor="let option of options; let i = index"
-                [class.active]="i === highlightedIndex"
-            >
-                <button (click)="onOptionClick(option)" class="option">
+            <ng-container *ngFor="let option of options; let i = index">
+                <button
+                    [class.active]="i === highlightedIndex"
+                    (click)="onOptionClick(option)"
+                    class="option"
+                >
                     {{ option[labelKey] }}
                 </button>
             </ng-container>

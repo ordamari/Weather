@@ -3,18 +3,24 @@ import {
     EventEmitter,
     Input,
     OnDestroy,
+    OnInit,
     Output,
 } from '@angular/core'
+import { selectTheme } from '@app/store/preferences/preferences.selectors'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { Store } from '@ngrx/store'
 import openOptionsAnimation from '@shared/animations/open-options.animation'
+import { Theme } from '@shared/enums/theme.enum'
 import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader'
+import { Subscription, tap } from 'rxjs'
 @Component({
     selector: 'app-search',
     templateUrl: './search.component.html',
     styleUrls: ['./search.component.scss'],
     animations: [openOptionsAnimation],
 })
-export class SearchComponent<T extends object> implements OnDestroy {
+export class SearchComponent<T extends object> implements OnInit, OnDestroy {
+    constructor(private store: Store) {}
     @Input() isLoad = false
     @Input() options: T[] = []
     @Input() labelKey!: keyof T
@@ -30,6 +36,16 @@ export class SearchComponent<T extends object> implements OnDestroy {
     @Output() valueChange = new EventEmitter<string>()
     @Output() selectOption = new EventEmitter<T>()
 
+    faSearch = faSearch
+    timeout: NodeJS.Timeout | null = null
+    isFocused = false
+    highlightedIndex = 0
+    theme = Theme.Light
+    subscription: Subscription | null = null
+    $theme = this.store
+        .select(selectTheme)
+        .pipe(tap((theme) => (this.theme = theme)))
+
     get isShowOptions() {
         return (
             this.options.length > 0 && this.value.length > 0 && this.isFocused
@@ -40,17 +56,16 @@ export class SearchComponent<T extends object> implements OnDestroy {
         return this.isShowOptions ? 'out' : 'in'
     }
 
-    skeletonTheme: NgxSkeletonLoaderComponent['theme'] = {
-        margin: '1rem',
-        backgroundColor: '#15202B',
-        width: 'calc(100% - 2rem)',
-        height: '2.5rem',
+    get skeletonTheme(): NgxSkeletonLoaderComponent['theme'] {
+        const bgStyle =
+            this.theme === Theme.Light ? {} : { backgroundColor: '#15202B' }
+        return {
+            ...bgStyle,
+            margin: '1rem',
+            width: 'calc(100% - 2rem)',
+            height: '2.5rem',
+        }
     }
-
-    faSearch = faSearch
-    timeout: NodeJS.Timeout | null = null
-    isFocused = false
-    highlightedIndex = 0
 
     onOptionClick(option: T) {
         this.selectOption.emit(option)
@@ -92,7 +107,12 @@ export class SearchComponent<T extends object> implements OnDestroy {
         }
     }
 
-    ngOnDestroy(): void {
+    ngOnInit() {
+        this.subscription = this.$theme.subscribe()
+    }
+
+    ngOnDestroy() {
         if (this.timeout) clearTimeout(this.timeout)
+        if (this.subscription) this.subscription.unsubscribe()
     }
 }
