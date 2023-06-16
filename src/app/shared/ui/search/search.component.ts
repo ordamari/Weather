@@ -69,7 +69,6 @@ export class SearchComponent<T extends object> implements OnInit, OnDestroy {
 
     onOptionClick(option: T) {
         this.selectOption.emit(option)
-        console.log('option', option)
         this.value = ''
     }
 

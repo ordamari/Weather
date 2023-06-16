@@ -3,18 +3,18 @@
         <ul>
             <li>
                 <a routerLink="/weather" routerLinkActive="active">
-                    <fa-icon [icon]="faCloudSun"></fa-icon>
+                    <fa-icon [icon]="faCloudSun" />
                     <span class="text">Weather</span>
                 </a>
             </li>
             <li>
                 <a routerLink="/favorites" routerLinkActive="active">
-                    <fa-icon [icon]="faHeart"></fa-icon>
+                    <fa-icon [icon]="faHeart" />
                     <span class="text">Favorites</span>
                 </a>
             </li>
         </ul>
     </nav>
 
-    <app-toggle [(value)]="isLightMode"></app-toggle>
+    <app-toggle [(value)]="isLightMode" />
 </div>

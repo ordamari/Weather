@@ -18,8 +18,6 @@ export class ToggleComponent {
     @Output() valueChange = new EventEmitter<boolean>()
 
     onChange() {
-        console.log('onChange')
-
         this.value = !this.value
     }
 }

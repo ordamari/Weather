@@ -8,9 +8,9 @@
             (focus)="isFocused = true"
             (blur)="onBlur()"
         />
-        <fa-icon *ngIf="!isLoad" [icon]="faSearch"></fa-icon>
+        <fa-icon *ngIf="!isLoad" [icon]="faSearch" />
         <div *ngIf="isLoad" class="loader-container">
-            <app-loader></app-loader>
+            <app-loader />
         </div>
     </div>
     <div [@open-options]="showOptionsSituation" class="options">

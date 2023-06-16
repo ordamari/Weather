@@ -23,8 +23,6 @@ export class FavoritesComponent {
 
     onSelectCity(city: City) {
         this.store.dispatch(selectCity({ city }))
-        console.log('city', city)
-
         this.router.navigate(['/weather'])
     }
 }
