@@ -10,12 +10,9 @@ const preferencesReducer: ActionReducer<PreferencesState> = createReducer(
     preferencesState,
     on(
         toggleMethod,
-        (state): PreferencesState => ({
+        (state, action): PreferencesState => ({
             ...state,
-            method:
-                state.method === Method.Metric
-                    ? Method.Imperial
-                    : Method.Metric,
+            method: action.method,
         })
     ),
     on(

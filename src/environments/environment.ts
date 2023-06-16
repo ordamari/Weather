@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    WEATHER_API_KEY: 'Ssltta73dlrNQZ1hjZ0wza1uc7PI3Xzf',
+    WEATHER_API_KEY: 'nHnKfzklCfdbVtUYldmLsvRzbf4AG69d',
 }
 
 /*

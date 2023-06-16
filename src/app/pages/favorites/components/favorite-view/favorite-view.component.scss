@@ -25,6 +25,10 @@
     outline: none;
     text-align: start;
     color: var(--text-color);
+
+    @media (max-width: 800px) {
+      font-size: var(--large-font-size);
+    }
   }
 
   .remove-button {
@@ -33,6 +37,10 @@
     color: var(--primary-color);
     font-size: 4rem;
     cursor: pointer;
-    color: var(--favorite-color)
+    color: var(--favorite-color);
+
+    @media (max-width: 800px) {
+      font-size: 3em
+    }
   }
 }

@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store'
 import { City } from '@shared/models/city.model'
+import toggleStorageFavoriteCities from '../utils/toggleStorageFavoriteCities'
 
 export const selectCity = createAction(
     '[Weather] Select City',
@@ -8,5 +9,8 @@ export const selectCity = createAction(
 
 export const toggleFavorite = createAction(
     '[Weather] Toggle Favorite',
-    props<{ city: City }>()
+    ({ city }: { city: City }) => {
+        toggleStorageFavoriteCities(city)
+        return { city }
+    }
 )

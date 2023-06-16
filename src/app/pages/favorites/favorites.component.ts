@@ -1,10 +1,10 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
-import { selectCity, toggleFavorite } from '@app/store/weather/weather.actions'
 import { Store } from '@ngrx/store'
 import { City } from '@shared/models/city.model'
 import { Observable } from 'rxjs'
 import { selectFavoriteCities } from '@store/weather/weather.selectors'
+import { selectCity, toggleFavorite } from '@app/store/weather/weather.actions'
 
 @Component({
     selector: 'app-favorites',

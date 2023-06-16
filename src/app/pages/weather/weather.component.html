@@ -1,13 +1,13 @@
 <div class="page weather flex column align-center">
-    <div class="flex align-center gap-medium">
-        <app-search-cities></app-search-cities>
-        <app-toggle-methods
-            [method]="method$ | async"
-            (toggleMethod)="onToggleMethod()"
-        ></app-toggle-methods>
-        <app-geolocation
-            (getCityByGeolocation)="onSetCity($event)"
-        ></app-geolocation>
+    <div class="flex align-center gap-medium wrap justify-center">
+        <app-search-cities />
+        <div class="flex align-center gap-medium">
+            <app-toggle-methods
+                [method]="method$ | async"
+                (toggleMethod)="onToggleMethod()"
+            />
+            <app-geolocation (getCityByGeolocation)="onSetCity($event)" />
+        </div>
     </div>
     <div
         class="flex column align-center gap-large justify-center w100 weather-container"
@@ -20,13 +20,13 @@
                 [method]="method$ | async"
                 [favoriteCities]="favoriteCities$ | async"
                 (toggleFavorite)="onToggleFavorite($event)"
-            ></app-weather-view>
+            />
         </div>
         <div class="w100">
-            <app-forecast-view
-                *ngIf="forecast"
-                [forecast]="forecast"
-            ></app-forecast-view>
+            <app-forecast-view *ngIf="forecast" [forecast]="forecast" />
+        </div>
+        <div class="w100">
+            <app-area-chart-forecast *ngIf="forecast" [forecast]="forecast" />
         </div>
     </div>
 </div>

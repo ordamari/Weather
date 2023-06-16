@@ -14,13 +14,24 @@
         </div>
     </div>
     <div [@open-options]="showOptionsSituation" class="options">
-        <button
-            (click)="onOptionClick(option)"
-            class="option"
-            *ngFor="let option of options; let i = index"
-            [class.active]="i === highlightedIndex"
-        >
-            {{ option[labelKey] }}
-        </button>
+        <div *ngIf="isLoad">
+            <ngx-skeleton-loader
+                count="5"
+                appearance="line"
+                animation="pulse"
+                [theme]="skeletonTheme"
+                loadingText="Loading..."
+            ></ngx-skeleton-loader>
+        </div>
+        <ng-container *ngIf="!isLoad">
+            <ng-container
+                *ngFor="let option of options; let i = index"
+                [class.active]="i === highlightedIndex"
+            >
+                <button (click)="onOptionClick(option)" class="option">
+                    {{ option[labelKey] }}
+                </button>
+            </ng-container>
+        </ng-container>
     </div>
 </div>

@@ -7,6 +7,7 @@ import {
 } from '@angular/core'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import openOptionsAnimation from '@shared/animations/open-options.animation'
+import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader'
 @Component({
     selector: 'app-search',
     templateUrl: './search.component.html',
@@ -37,6 +38,13 @@ export class SearchComponent<T extends object> implements OnDestroy {
 
     get showOptionsSituation() {
         return this.isShowOptions ? 'out' : 'in'
+    }
+
+    skeletonTheme: NgxSkeletonLoaderComponent['theme'] = {
+        margin: '1rem',
+        backgroundColor: '#15202B',
+        width: 'calc(100% - 2rem)',
+        height: '2.5rem',
     }
 
     faSearch = faSearch
