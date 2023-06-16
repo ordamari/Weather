@@ -23,7 +23,10 @@ const routes: Routes = [
     },
     {
         path: '**',
-        redirectTo: 'weather', //todo: 404 page
+        loadChildren: () =>
+            import('./pages/not-found/not-found.module').then(
+                (m) => m.NotFoundModule
+            ),
     },
 ]
 

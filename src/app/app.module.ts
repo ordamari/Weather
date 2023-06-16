@@ -4,10 +4,11 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { CoreModule } from '@core/core.module'
 import { StoreModule } from '@ngrx/store'
-import rootReducer from '@store/root.reducer'
+import rootReducer from '@store/root.reducer';
+import { NotFoundComponent } from './pages/not-found/not-found.component'
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, NotFoundComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
