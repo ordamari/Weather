@@ -9,13 +9,24 @@
 This is a simple and responsive weather app developed using Angular. It allows users to search for weather details of cities, save them as favorites, and view a 5-day forecast. The app integrates with the AccuWeather API to retrieve weather data.<br/>
 [Link to preview project](https://ordamari.github.io/Weather)
 ## Technologies
-Angular, Docker, Zod, Toastr, TypeScript, ngrx , ngx-charts
+The project incorporates the following technologies:
+
+* Angular
+* Docker
+* Zod
+* Toastr
+* TypeScript
+* ngrx
+* ngx-charts
+  
 ## Images
 ![image](https://github.com/ordamari/Weather/assets/63239238/18fb031a-6f25-494e-8ce0-77377dbb8ad6)
 
 ![image](https://github.com/ordamari/Weather/assets/63239238/a37470f4-12bf-4f06-8838-180628ab55e2)
 
 ## Features
+The E-Commerce app offers the following features:
+
 * Search and Weather Details: Users can search for the weather details of any city using the search field. The app displays the current weather conditions and a 5-day forecast for the searched location.
 
 * Favorites Management: Users can save their favorite cities and quickly access them on the favorites page. Each favorite location includes an ID, name. Clicking on a favorite location navigates to the main screen, showing detailed weather information for that location.
