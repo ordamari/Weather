@@ -25,7 +25,7 @@ The project incorporates the following technologies:
 ![image](https://github.com/ordamari/Weather/assets/63239238/a37470f4-12bf-4f06-8838-180628ab55e2)
 
 ## Features
-The E-Commerce app offers the following features:
+The Weather app offers the following features:
 
 * Search and Weather Details: Users can search for the weather details of any city using the search field. The app displays the current weather conditions and a 5-day forecast for the searched location.
 
